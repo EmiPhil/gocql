@@ -1,6 +1,7 @@
 package streams
 
 import (
+	"fmt"
 	"math"
 	"strconv"
 	"sync/atomic"
@@ -57,6 +58,7 @@ func (s *IDGenerator) GetStream() (int, bool) {
 		bucket := atomic.LoadUint64(&s.streams[pos])
 		if bucket == math.MaxUint64 {
 			// all streams in use
+			fmt.Println("GOCQL ALL STREAMS IN USE")
 			continue
 		}
 
